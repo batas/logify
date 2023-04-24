@@ -1,0 +1,12 @@
+# k8s configmap definition
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-dashboard-config
+  namespace: {{ .Release.Namespace }}
+  labels:
+    grafana_dashboard: "1"
+    app: {{ .Release.Name }}-dashboard
+data:
+  logify.json: |-
+{{- .Files.Get "dashboards/logify.json" | nindent 4 }}
