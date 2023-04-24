@@ -37,3 +37,8 @@ def get_logs(
         f"SELECT * FROM logs ORDER BY created DESC LIMIT {int(last)}",
     )
     return result
+
+
+@app.get("/_healthz")
+def healthz():
+    return {"status": "ok"}
